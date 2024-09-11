@@ -8,11 +8,15 @@
   </head>
   <body>
     <script type="module">
-        import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+      import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
 
-        const dataResponse = await fetch("./dataCorected.json");
-        const data = await dataResponse.json();
-        console.log(data);
+      const dataResponse = await fetch("./dataCorected.json");
+      const data = await dataResponse.json();
+      console.log(data);
+
+      const victoireResponse = await fetch("./victoireApres2002.json");
+      const victoire = await victoireResponse.json();
+      console.log(victoire);
     </script>
     <header>
       <nav>
