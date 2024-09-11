@@ -1,53 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mon Site Élégant</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script type="module">
+        import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
+
+        const dataResponse = await fetch("./dataCorected.json");
+        const data = await dataResponse.json();
+        console.log(data);
+    </script>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#section1">Section 1</a></li>
-                <li><a href="#section2">Section 2</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <ul>
+          <li><a href="#section1">Section 1</a></li>
+          <li><a href="#section2">Section 2</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-        <section id="section1">
-            <h2>Section 1</h2>
-            <p>Bienvenue dans la première section de notre site. Ici, nous explorons les merveilles de la technologie moderne et son impact sur notre vie quotidienne.</p>
-            
-            <figure>
-                <img src="https://picsum.photos/400/300?random=1" alt="Image technologique">
-                <figcaption>L'avenir de la technologie</figcaption>
-            </figure>
-            
-            <div id="graph1" class="graph-placeholder">
-                <!-- Futur emplacement pour un graphique -->
-            </div>
-        </section>
+      <section id="section1">
+        <h2>Section 1</h2>
+        <p>
+          Bienvenue dans la première section de notre site. Ici, nous explorons
+          les merveilles de la technologie moderne et son impact sur notre vie
+          quotidienne.
+        </p>
 
-        <section id="section2">
-            <h2>Section 2</h2>
-            <p>Dans cette deuxième section, nous abordons l'importance de la nature et de la préservation de l'environnement pour les générations futures.</p>
-            
-            <figure>
-                <img src="https://picsum.photos/400/300?random=2" alt="Image nature">
-                <figcaption>La beauté de notre planète</figcaption>
-            </figure>
-            
-            <div id="graph2" class="graph-placeholder">
-                <!-- Futur emplacement pour un graphique -->
-            </div>
-        </section>
+        <figure>
+          <img
+            src="https://picsum.photos/400/300?random=1"
+            alt="Image technologique"
+          />
+          <figcaption>L'avenir de la technologie</figcaption>
+        </figure>
+
+        <div id="graph1" class="graph-placeholder"></div>
+      </section>
+
+      <section id="section2">
+        <h2>Section 2</h2>
+        <p>
+          Dans cette deuxième section, nous abordons l'importance de la nature
+          et de la préservation de l'environnement pour les générations futures.
+        </p>
+
+        <figure>
+          <img
+            src="https://picsum.photos/400/300?random=2"
+            alt="Image nature"
+          />
+          <figcaption>La beauté de notre planète</figcaption>
+        </figure>
+
+        <div id="graph2" class="graph-placeholder"></div>
+      </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Mon Site Élégant. Tous droits réservés.</p>
+      <p>&copy; 2024 Mon Site Élégant. Tous droits réservés.</p>
     </footer>
-</body>
+  </body>
 </html>
