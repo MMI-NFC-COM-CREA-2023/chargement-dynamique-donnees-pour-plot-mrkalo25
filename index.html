@@ -7,58 +7,6 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <script type="module">
-      import * as Plot from "https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm";
-
-      const dataResponse = await fetch("./dataCorected.json");
-      const data = await dataResponse.json();
-      console.log(data);
-
-      const victoireResponse = await fetch("./victoireApres2002.json");
-      const victoire = await victoireResponse.json();
-      console.log(victoire);
-
-      const plot = Plot.plot({
-        x: { grid: true, label: "Années" },
-        y: { grid: true, label: "Gains en euros" },
-        color: { legend: true },
-        title: "Evolution des gains du vainqueur du grand chelem",
-        subtitle: "Evoluiton des gains en euros du grand chelem de 1968 à 2022",
-        marginLeft: 55,
-        marks: [
-          Plot.lineY(data, {
-            x: "YEAR",
-            y: "WINNER_PRIZE",
-            stroke: "TOURNAMENT",
-            tip: true,
-          }),
-        ],
-      });
-
-      const div = document.querySelector("#graph1");
-      div.append(plot);
-
-      const plot2 = Plot.plot({
-        x: { label: "Tournoi" },
-        y: { grid: true, label: "Vainceur" },
-        color: { legend: true },
-        title: "Domination du Big three de 2002 à 2023",
-        subtitle: "Nombre de victoire par tournoi en fonction des joeuurs",
-        marginLeft: 140,
-        marks: [
-          Plot.dot(
-            victoire,
-            Plot.group(
-              { r: "count" },
-              { x: "TOURNAMENT", y: "WINNER", stroke: "TOURNAMENT", tip: true }
-            )
-          ),
-        ],
-      });
-
-      const div2 = document.querySelector("#graph2");
-      div2.append(plot2);
-    </script>
     <header>
       <nav>
         <ul>
@@ -77,10 +25,6 @@
           quotidienne.
         </p>
 
-        <figure>
-          <figcaption>L'avenir de la technologie</figcaption>
-        </figure>
-
         <div id="graph1" class="graph-placeholder"></div>
       </section>
 
@@ -91,10 +35,6 @@
           et de la préservation de l'environnement pour les générations futures.
         </p>
 
-        <figure>
-          <figcaption>La beauté de notre planète</figcaption>
-        </figure>
-
         <div id="graph2" class="graph-placeholder"></div>
       </section>
     </main>
@@ -102,5 +42,68 @@
     <footer>
       <p>&copy; 2024 Mon Site Élégant. Tous droits réservés.</p>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6"></script>
+
+    <script>
+      
+      (async () => {
+        const dataResponse = await fetch("./dataCorected.json");
+        const data = await dataResponse.json();
+        console.log(data);
+
+        const victoireResponse = await fetch("./victoireApres2002.json");
+        const victoire = await victoireResponse.json();
+        console.log(victoire);
+
+        const plot = Plot.plot({
+          x: { grid: true, label: "Années" },
+          y: { grid: true, label: "Gains en euros" },
+          color: { legend: true },
+          title: "Evolution des gains du vainqueur du grand chelem",
+          subtitle:
+            "Evoluiton des gains en euros du grand chelem de 1968 à 2022",
+          marginLeft: 55,
+          marks: [
+            Plot.lineY(data, {
+              x: "YEAR",
+              y: "WINNER_PRIZE",
+              stroke: "TOURNAMENT",
+              tip: true,
+            }),
+          ],
+        });
+
+        const div = document.querySelector("#graph1");
+        div.append(plot);
+
+        const plot2 = Plot.plot({
+          x: { label: "Tournoi" },
+          y: { grid: true, label: "Vainceur" },
+          color: { legend: true },
+          title: "Domination du Big three de 2002 à 2023",
+          subtitle: "Nombre de victoire par tournoi en fonction des joeuurs",
+          marginLeft: 140,
+          marks: [
+            Plot.dot(
+              victoire,
+              Plot.group(
+                { r: "count" },
+                {
+                  x: "TOURNAMENT",
+                  y: "WINNER",
+                  stroke: "TOURNAMENT",
+                  tip: true,
+                }
+              )
+            ),
+          ],
+        });
+
+        const div2 = document.querySelector("#graph2");
+        div2.append(plot2);
+      })();
+    </script>
   </body>
 </html>
